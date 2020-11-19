@@ -6,6 +6,6 @@ RUN apt-get update -y && \
 apt-get upgrade -y && \
 apt-get install -y zlib1g-dev php php-zip php-xml php-curl
 
-RUN cd / && npm install -g node-minify
+RUN mkdir /cicd && chmod 777 cicd && cd /cicd && npm install node-minify
 
-COPY update.php /update.php
+COPY update.php /cicd/update.php
