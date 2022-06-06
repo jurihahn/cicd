@@ -31,8 +31,6 @@ function download($file_source, $file_target, $headers)
 	return TRUE;
 }
 
-$dir = __DIR__;
-
 if(isset($argv))
 {
 	parse_str(implode('&', array_slice($argv, 1)), $_GET);
@@ -41,6 +39,12 @@ $prj_id = $_GET['cicd_project_id'];
 $gitlaburl = $_GET['gitlaburl'];
 $private_token = $_GET['private_token'];
 $files = json_decode($_GET['files']);
+$dist_dir = $_GET['dist_dir'];
+
+if(!$dist_dir)
+{
+	$dist_dir = __DIR__;
+}
 
 echo ' gitlaburl=' . $gitlaburl . "\n";
 
@@ -49,7 +53,7 @@ foreach ($files as $file)
 	echo 'download "' . $file . '", with private key "' . $private_token . '"' . "\n";
 	download(
 		$gitlaburl . 'api/v4/projects/' . $prj_id . '/repository/files/' . urlencode($file) . '/raw?ref=master',
-		$dir . '/' . $file,
+		$dist_dir . '/' . $file,
 		"PRIVATE-TOKEN: " . $private_token . "\r\n");
 	echo ' - download "' . $file . '" done!' . "\n";
 }
