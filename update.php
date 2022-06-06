@@ -50,7 +50,7 @@ echo ' gitlaburl=' . $gitlaburl . "\n";
 
 foreach ($files as $file)
 {
-	echo 'download "' . $file . '", with private key "' . $private_token . '"' . "\n";
+	echo 'download "' . $file . '" to "' . $dist_dir . '/' . $file . '", with private key "' . $private_token . '"' . "\n";
 	download(
 		$gitlaburl . 'api/v4/projects/' . $prj_id . '/repository/files/' . urlencode($file) . '/raw?ref=master',
 		$dist_dir . '/' . $file,
