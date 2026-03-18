@@ -1,10 +1,13 @@
-FROM node
+FROM cypress/browsers:latest
 
 MAINTAINER Juri Hahn <docker@hahn21.de>
 
+ENV DEBIAN_FRONTEND=noninteractive
+ENV COMPOSER_ALLOW_SUPERUSER=1
+
 RUN apt-get update -y && \
 apt-get upgrade -y && \
-apt-get install -y zlib1g-dev php php-zip php-xml php-curl ca-certificates openssl zip curl php-cli php-mbstring git unzip
+apt-get install -y zlib1g-dev php php-zip php-xml php-curl ca-certificates openssl zip curl php-cli php-mbstring git unzip docker.io docker-compose-plugin
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
