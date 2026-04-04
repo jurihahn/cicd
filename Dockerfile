@@ -7,7 +7,7 @@ ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apt-get update -y && \
 apt-get upgrade -y && \
-apt-get install -y zlib1g-dev php php-zip php-xml php-curl ca-certificates openssl zip curl php-cli php-mbstring git unzip
+apt-get install -y zlib1g-dev php php-zip php-xml php-curl ca-certificates openssl zip curl php-cli php-mbstring php-xdebug git unzip
 
 RUN install -m 0755 -d /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc && \
